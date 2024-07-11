@@ -10,7 +10,7 @@ import { RoomList } from '../room';
 })
 export class RoomsListComponent implements OnInit {
 
-  @Input() rooms: RoomList[] = [];
+  @Input() rooms: RoomList[] = [] ; 
    
   constructor() { }
 

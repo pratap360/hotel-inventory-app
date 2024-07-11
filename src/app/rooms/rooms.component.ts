@@ -1,13 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { Room, RoomList } from './room';
 import { CommonModule } from '@angular/common';
+import { RoomsListComponent } from './rooms-list/rooms-list.component';
 
 @Component({
   selector: 'hoin-rooms',
   standalone: true,
-  imports: [CommonModule], // Include CommonModule here
+  imports: [CommonModule,RoomsListComponent], // Include CommonModule here
   templateUrl: './rooms.component.html',
-  styleUrl: './rooms.component.scss'
+  styleUrls: ['./rooms.component.scss']
 })
 export class RoomsComponent implements OnInit {
 

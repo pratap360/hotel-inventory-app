@@ -11,9 +11,7 @@
     {{roomList | json}}
 
 <div *ngIf="rooms.availableRooms > 0">
-    <hoin-rooms-list 
-    [rooms]="roomList">
-    </hoin-rooms-list>
+    <hoin-rooms-list [rooms]="roomList"></hoin-rooms-list>
 </div>
 
 <!-- <button (click)="toggle()">Toggle</button>  -->
