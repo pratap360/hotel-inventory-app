@@ -1,16 +1,17 @@
-import { Component, DoCheck, OnInit } from '@angular/core';
+import { AfterViewInit, Component, DoCheck, OnInit, ViewChild } from '@angular/core';
 import { Room, RoomList } from './room';
 import { CommonModule } from '@angular/common';
 import { RoomsListComponent } from './rooms-list/rooms-list.component';
+import { HeaderComponent } from "../header/header.component";
 
 @Component({
   selector: 'hoin-rooms',
   standalone: true,
-  imports: [CommonModule,RoomsListComponent], // Include CommonModule here
+  imports: [CommonModule, RoomsListComponent, HeaderComponent], // Include CommonModule here
   templateUrl: './rooms.component.html',
   styleUrls: ['./rooms.component.scss']
 })
-export class RoomsComponent implements OnInit, DoCheck{
+export class RoomsComponent implements OnInit, DoCheck,AfterViewInit{
 
   hotelName = "Hilton Hotel";
   numberOfRooms = 10;
@@ -28,12 +29,22 @@ export class RoomsComponent implements OnInit, DoCheck{
 
   roomList: RoomList[] = [] ;
 
+  @ViewChild (HeaderComponent) headerComponent!: HeaderComponent;
+
   constructor () {}
+  ngAfterViewInit(): void {
+    // console.log(this.headerComponent);
+    // * if getting any error in dev mode then it fine but in prod it's not fine must look into the code for more info
+    this.headerComponent.title = 'Rooms View';
+  }
   ngDoCheck(): void {
     console.log('ngDoCheck called');
   }
 
   ngOnInit(): void {
+
+    console.log(this.headerComponent);
+
     this.roomList = [
     {
       roomNumber: 1,
