@@ -1,17 +1,21 @@
 <h2>welcome to {{hotelName}}</h2>
 
 <div [hidden]="hideRooms">
- Number of hotels : 
- <div 
- [ngStyle]="{'color': rooms.availableRooms? 'green' : 'red'}"
- [innerText]="numberOfRooms"></div>
+    Number of hotels :
+    <div [ngStyle]="{'color': rooms.availableRooms? 'green' : 'red'}" [innerText]="numberOfRooms"></div>
 </div>
-<!-- 
-{{rooms?.availableRooms ?? 'no rooms'}} -->
-    {{roomList | json}}
+
+<!-- {{rooms?.availableRooms ?? 'no rooms'}} -->
+<!-- {{roomList | json}} -->
+
+<div *ngIf="selectedRooms">
+    {{selectedRooms| json}}
+</div>
 
 <div *ngIf="rooms.availableRooms > 0">
-    <hoin-rooms-list [rooms]="roomList"></hoin-rooms-list>
+    <hoin-rooms-list [rooms]="roomList"
+    (selectedRoom)="selectRoom($event)">
+    </hoin-rooms-list>
 </div>
 
-<button (click)="toggle()">Toggle</button> 
+<button (click)="toggle()">Toggle</button>
