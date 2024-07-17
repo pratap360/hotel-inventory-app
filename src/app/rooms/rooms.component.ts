@@ -60,5 +60,7 @@ export class RoomsComponent implements OnInit {
     },
   ];
 }
-
+toggle() {
+  this.hideRooms = !this.hideRooms
+}
 }
