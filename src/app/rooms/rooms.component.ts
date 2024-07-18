@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, DoCheck, OnInit, ViewChild } from '@angular/core';
+import { AfterViewChecked, AfterViewInit, Component, DoCheck, OnInit, ViewChild } from '@angular/core';
 import { Room, RoomList } from './room';
 import { CommonModule } from '@angular/common';
 import { RoomsListComponent } from './rooms-list/rooms-list.component';
@@ -11,7 +11,7 @@ import { HeaderComponent } from "../header/header.component";
   templateUrl: './rooms.component.html',
   styleUrls: ['./rooms.component.scss']
 })
-export class RoomsComponent implements OnInit, DoCheck,AfterViewInit{
+export class RoomsComponent implements OnInit, DoCheck,AfterViewInit,AfterViewChecked{
 
   hotelName = "Hilton Hotel";
   numberOfRooms = 10;
@@ -32,6 +32,9 @@ export class RoomsComponent implements OnInit, DoCheck,AfterViewInit{
   @ViewChild (HeaderComponent) headerComponent!: HeaderComponent;
 
   constructor () {}
+  ngAfterViewChecked(): void {
+    // this.headerComponent.title = 'Rooms View';
+  }
   ngAfterViewInit(): void {
     // console.log(this.headerComponent);
     // * if getting any error in dev mode then it fine but in prod it's not fine must look into the code for more info

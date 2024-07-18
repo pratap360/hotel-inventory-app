@@ -1,11 +1,20 @@
 <h1>Hello Angular</h1>
+<!-- * 1st way to load the data using 👇🏼 -->
 <hoin-rooms></hoin-rooms>
 
+<!-- * 2nd way to load the component dynamically using 👇🏼 ng template-->
+<!-- <div>
+    <ng-template #user></ng-template> 
+ </div> -->
 
-<div *ngSwitch="role">
+<!-- <div *ngSwitch="role">
     <div *ngSwitchCase="'User'">welcome User here !</div>
     <div *ngSwitchCase="'Admin'">
     <hoin-rooms></hoin-rooms>
     </div>
     <div *ngSwitchDefault>your are not authorized to view this page!</div>
+</div> -->
+
+<div #name>
+
 </div>

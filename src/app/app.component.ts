@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { RoomsComponent } from "./rooms/rooms.component";
 import { CommonModule } from '@angular/common'; 
@@ -16,10 +16,22 @@ import { CommonModule } from '@angular/common';
     ,
     imports: [RouterOutlet, RoomsComponent,CommonModule]
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
+  
   title = 'hotelinventoryapp';
 
   // role = 'Admin'
   // role = 'User'
-  role = 'Users'
+
+  // role = 'Users'
+  // @ViewChild('user',{read:ViewContainerRef}) vcr!: ViewContainerRef
+  // ngAfterViewInit() {
+  //   const componentRef = this.vcr.createComponent(RoomsComponent);
+  //   componentRef.instance.numberOfRooms = 40;
+  // }
+  @ViewChild('name',{static:true}) name!: ElementRef
+  ngOnInit () {
+    this.name.nativeElement.innerText = "Hiltion Hotel"
+  }
+
 }
