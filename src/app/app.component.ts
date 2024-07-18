@@ -22,8 +22,8 @@ export class AppComponent implements OnInit {
 
   // role = 'Admin'
   // role = 'User'
-
   // role = 'Users'
+
   // @ViewChild('user',{read:ViewContainerRef}) vcr!: ViewContainerRef
   // ngAfterViewInit() {
   //   const componentRef = this.vcr.createComponent(RoomsComponent);

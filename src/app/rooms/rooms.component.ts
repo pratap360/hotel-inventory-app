@@ -1,4 +1,4 @@
-import { AfterViewChecked, AfterViewInit, Component, DoCheck, OnInit, ViewChild } from '@angular/core';
+import { AfterViewChecked, AfterViewInit, Component, DoCheck, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { Room, RoomList } from './room';
 import { CommonModule } from '@angular/common';
 import { RoomsListComponent } from './rooms-list/rooms-list.component';
@@ -31,6 +31,8 @@ export class RoomsComponent implements OnInit, DoCheck,AfterViewInit,AfterViewCh
 
   @ViewChild (HeaderComponent) headerComponent!: HeaderComponent;
 
+@ViewChildren(HeaderComponent) headerChildrenComponent ! : QueryList<HeaderComponent>;
+
   constructor () {}
   ngAfterViewChecked(): void {
     // this.headerComponent.title = 'Rooms View';
@@ -39,6 +41,8 @@ export class RoomsComponent implements OnInit, DoCheck,AfterViewInit,AfterViewCh
     // console.log(this.headerComponent);
     // * if getting any error in dev mode then it fine but in prod it's not fine must look into the code for more info
     this.headerComponent.title = 'Rooms View';
+
+    this.headerChildrenComponent.last.title = 'Last title';
   }
   ngDoCheck(): void {
     console.log('ngDoCheck called');
