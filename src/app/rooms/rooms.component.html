@@ -4,25 +4,39 @@
 <hoin-header></hoin-header>
 
 <div [hidden]="hideRooms">
-    Number of hotels :
-    <div [ngStyle]="{'color': rooms.availableRooms? 'green' : 'red'}" [innerText]="numberOfRooms"></div>
+  Number of hotels :
+  <div
+    [ngStyle]="{ color: rooms.availableRooms ? 'green' : 'red' }"
+    [innerText]="numberOfRooms"
+  ></div>
 </div>
 
 <!-- {{rooms?.availableRooms ?? 'no rooms'}} -->
 <!-- {{roomList | json}} -->
 
 <div *ngIf="selectedRooms">
-    {{selectedRooms| json}}
+  {{ selectedRooms | json }}
 </div>
 
 <div>
-    <button (click)="addRoom()">Add Room</button>
+  <button (click)="addRoom()">Add Room</button>
 </div>
 
-<div *ngIf="rooms.availableRooms > 0">
-    <hoin-rooms-list [rooms]="roomList" [title]="title"
-    (selectedRoom)="selectRoom($event)">
-    </hoin-rooms-list>
+<div *ngIf="hideRooms">
+  <hoin-rooms-list
+    [rooms]="roomList"
+    [title]="title"
+    (selectedRoom)="selectRoom($event)"
+  >
+  </hoin-rooms-list>
 </div>
+<!-- <div *ngIf="rooms.availableRooms > 0">
+  <hoin-rooms-list
+    [rooms]="roomList"
+    [title]="title"
+    (selectedRoom)="selectRoom($event)"
+  >
+  </hoin-rooms-list>
+</div> -->
 
 <button (click)="toggle()">Toggle</button>

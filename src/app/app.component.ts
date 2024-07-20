@@ -1,7 +1,9 @@
 import { AfterViewInit, Component, ElementRef, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { RoomsComponent } from "./rooms/rooms.component";
-import { CommonModule } from '@angular/common'; 
+import { CommonModule } from '@angular/common';
+import { ContainerComponent } from "./container/container.component";
+import { EmployeeComponent } from "./employee/employee.component"; 
 
 @Component({
     selector: 'hoin-root',
@@ -14,7 +16,7 @@ import { CommonModule } from '@angular/common';
     styleUrl: './app.component.scss'
     // styles: [`h1{color:red;}`]
     ,
-    imports: [RouterOutlet, RoomsComponent,CommonModule]
+    imports: [RouterOutlet, RoomsComponent, CommonModule, ContainerComponent, EmployeeComponent]
 })
 export class AppComponent implements OnInit {
   
