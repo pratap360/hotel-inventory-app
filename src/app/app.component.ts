@@ -1,9 +1,10 @@
-import { AfterViewInit, Component, ElementRef, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, Optional, ViewChild, ViewContainerRef } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { RoomsComponent } from "./rooms/rooms.component";
 import { CommonModule } from '@angular/common';
 import { ContainerComponent } from "./container/container.component";
 import { EmployeeComponent } from "./employee/employee.component"; 
+import { LoggerService } from './logger.service';
 
 @Component({
     selector: 'hoin-root',
@@ -32,7 +33,11 @@ export class AppComponent implements OnInit {
   //   componentRef.instance.numberOfRooms = 40;
   // }
   @ViewChild('name',{static:true}) name!: ElementRef
+  constructor(@Optional() private loggerService:  LoggerService) {
+    
+  }
   ngOnInit () {
+    this.loggerService?.log('AppComponent.ngOnInit()')
     this.name.nativeElement.innerText = "Hiltion Hotel"
   }
 
