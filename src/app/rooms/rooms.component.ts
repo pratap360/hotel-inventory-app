@@ -42,7 +42,11 @@ export class RoomsComponent implements OnInit, DoCheck, AfterViewInit, AfterView
   ngOnInit(): void {
 
 
-    this.roomList = this.roomService.getRooms();
+    this.roomService.getRooms().subscribe(rooms => {
+      this.roomList = rooms;
+    })
+    // console.log(this.roomService.getRooms());
+    
     // console.log(this.headerComponent);
 
 
@@ -74,7 +78,7 @@ export class RoomsComponent implements OnInit, DoCheck, AfterViewInit, AfterView
 
   addRoom() {
     const room: RoomList = {
-      roomNumber: 4,
+      roomNumber: '4',
       roomType: 'Deluxe Room',
       amenities: "AC,Free Wifi, TV, Kitchen",
       price: 500,
