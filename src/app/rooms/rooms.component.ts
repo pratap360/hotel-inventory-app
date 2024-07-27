@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { RoomsListComponent } from './rooms-list/rooms-list.component';
 import { HeaderComponent } from "../header/header.component";
 import { RoomsService } from './services/rooms.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'hoin-rooms',
@@ -30,6 +31,14 @@ export class RoomsComponent implements OnInit, DoCheck, AfterViewInit, AfterView
 
   roomList: RoomList[] = [];
 
+stream = new Observable<string>((observer) => {
+  observer.next('user1');
+  observer.next('user2');
+  observer.next('user3');
+  observer.complete();
+  // observer.error('error from observable');
+})    
+
   @ViewChild(HeaderComponent) headerComponent!: HeaderComponent;
 
   @ViewChildren(HeaderComponent) headerChildrenComponent !: QueryList<HeaderComponent>;
@@ -41,6 +50,13 @@ export class RoomsComponent implements OnInit, DoCheck, AfterViewInit, AfterView
 
   ngOnInit(): void {
     // this.roomList = this.roomService.getRooms();
+    this.stream.subscribe({
+      next: (value) => console.log(value),
+      error: (error) => console.log(error),
+      complete: () => console.log('completed')
+     })
+
+     this.stream.subscribe((data)=> console.log(data));
 
     this.roomService.getRooms().subscribe((rooms: RoomList[]) => {
       this.roomList = rooms;
