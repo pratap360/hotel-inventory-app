@@ -93,6 +93,7 @@ stream = new Observable<string>((observer) => {
 
 
   addRoom() {
+    // hard code data  👇🏼
     const room: RoomList = {
       roomNumber: '4',
       roomType: 'Deluxe Room',
@@ -104,7 +105,29 @@ stream = new Observable<string>((observer) => {
       rating: 4.0,
     };
     // this.roomList.push(room);
-    this.roomList = [...this.roomList, room];
+    // this.roomList = [...this.roomList, room];
+
+    this.roomService.addRoom(room).subscribe((data) => {
+      this.roomList = data;
+    })
+  }
+
+
+  editRoom(){
+    const room: RoomList = {
+      roomNumber: '6',
+      roomType: 'Deluxe Room',
+      amenities: "AC,Free Wifi, TV, Kitchen",
+      price: 500,
+      photos: 'https://images.unsplash.com/photo-1518791841217-8f162f1e1131',
+      checkinTime: new Date("11-Nov-2023"),
+      checkoutTime: new Date("12-Nov-2023"),
+      rating: 4.0,
+    };
+
+    this.roomService.editRoom(room).subscribe((data) => {
+      this.roomList = data;
+    })
   }
 
 }
