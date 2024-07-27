@@ -41,6 +41,7 @@ export class RoomsService {
     //   rating: 4.5,
     // },
   ];
+  // constructor(@Inject(APP_SERVICE_CONFIG)private config:AppConfig) {
   constructor(@Inject(APP_SERVICE_CONFIG)private config:AppConfig,private http:HttpClient) {
     // ? this is possible by the value providers 👇🏼
     console.log(this.config.apiUrl);
@@ -48,6 +49,7 @@ export class RoomsService {
    }
 
   getRooms() {
+    // return this.roomList;
     return this.http.get<RoomList[]>('/api/rooms')
   }
 
