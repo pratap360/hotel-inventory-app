@@ -130,5 +130,11 @@ stream = new Observable<string>((observer) => {
     })
   }
 
+  deleteRoom(){
+    this.roomService.deleteRoom('3').subscribe((data) => {
+      this.roomList = data;
+    })
+  }
+
 }
 
