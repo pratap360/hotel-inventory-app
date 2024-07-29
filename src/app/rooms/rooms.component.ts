@@ -14,7 +14,7 @@ import { CommonModule } from '@angular/common';
 import { RoomsListComponent } from './rooms-list/rooms-list.component';
 import { HeaderComponent } from '../header/header.component';
 import { RoomsService } from './services/rooms.service';
-import { Observable } from 'rxjs';
+import { catchError, Observable, of, Subject, Subscription } from 'rxjs';
 import { HttpEventType } from '@angular/common/http';
 
 @Component({
@@ -62,6 +62,20 @@ export class RoomsComponent
 
   totalBytes = 0;
 
+  subscription !: Subscription
+  
+  // error$ !: Subject<string>
+  error$ = new Subject<string>()
+  getError$ = this.error$.asObservable()
+  
+  rooms$ = this.roomService.getRooms$.pipe(
+    catchError((err)=>{
+      // console.log(err);
+      this.error$.next(err.message)
+      return of ([])
+    })
+  )
+  
   constructor(@SkipSelf() private roomService: RoomsService) {}
 
   ngOnInit(): void {
@@ -73,10 +87,15 @@ export class RoomsComponent
     });
 
     this.stream.subscribe((data) => console.log(data));
-    // this.roomService.getRooms().subscribe((rooms: RoomList[])
-    this.roomService.getRooms$.subscribe((rooms: RoomList[]) => {
+
+    this.subscription = this.roomService.getRooms$.subscribe((rooms: RoomList[]) => {
       this.roomList = rooms;
     });
+
+    // this.roomService.getRooms().subscribe((rooms: RoomList[])
+    // this.subscription = this.roomService.getRooms$.subscribe((rooms: RoomList[]) => {
+    //   this.roomList = rooms;
+    // });
 
     this.roomService.getPhotos().subscribe((event) => {
       switch (event.type) {
@@ -168,4 +187,11 @@ export class RoomsComponent
       this.roomList = data;
     });
   }
+
+  ngOnDestroy() {
+    if(this.subscription){
+      this.subscription.unsubscribe();
+    }
+  }
+
 }

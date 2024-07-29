@@ -13,7 +13,12 @@ export class RoomsService {
 
  roomList:RoomList[] = [];
 
- getRooms$ = this.http.get<RoomList[]>('/api/rooms').pipe(shareReplay(1));
+// * correct code for getRooms$ but do revert after test of error handling 👇🏼
+//  getRooms$ = this.http.get<RoomList[]>('/api/rooms').pipe(shareReplay(1));
+
+// the below code is wrong to just use how to handle error 👇🏼
+ getRooms$ = this.http.get<RoomList[]>('/api/room').pipe(shareReplay(1));
+
   // constructor(@Inject(APP_SERVICE_CONFIG)private config:AppConfig) {
   constructor(@Inject(APP_SERVICE_CONFIG)private config:AppConfig,private http:HttpClient) {
     // ? this is possible by the value providers 👇🏼
