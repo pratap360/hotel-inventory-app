@@ -73,8 +73,8 @@ export class RoomsComponent
     });
 
     this.stream.subscribe((data) => console.log(data));
-
-    this.roomService.getRooms().subscribe((rooms: RoomList[]) => {
+    // this.roomService.getRooms().subscribe((rooms: RoomList[])
+    this.roomService.getRooms$.subscribe((rooms: RoomList[]) => {
       this.roomList = rooms;
     });
 
