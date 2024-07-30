@@ -24,6 +24,7 @@
   <br>
 </div>
 
+<h2>Number of Rooms:{{roomsCount$ | async}} </h2>
 <h3>{{getError$| async}}</h3>
 
 <div *ngIf="rooms$ | async as rooms">
