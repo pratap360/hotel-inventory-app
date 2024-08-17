@@ -12,9 +12,14 @@ import { shareReplay } from 'rxjs';
 export class RoomsService {
 
  roomList:RoomList[] = [];
-//  headers = new HttpHeaders({'token':'123'});
+ headers = new HttpHeaders({token:'Hi my self paruidev #1'})
+ getRooms$ = this.http.get<RoomList[]>('/api/rooms',{
+  headers:this.headers,
+ }).pipe(shareReplay(1));
+
+ //  headers = new HttpHeaders({'token':'123'});
 // * correct code for getRooms$ but do revert after test of error handling 👇🏼
- getRooms$ = this.http.get<RoomList[]>('/api/rooms').pipe(shareReplay(1));
+//  getRooms$ = this.http.get<RoomList[]>('/api/rooms').pipe(shareReplay(1));
   // {headers:this.headers}
 
 // the below code is wrong to just use how to handle error 👇🏼
@@ -33,7 +38,8 @@ export class RoomsService {
   }
 
   addRoom(room : RoomList){
-    return this.http.post<RoomList[]>('/api/rooms',room)
+    return this.http.post<RoomList[]>('/api /rooms',room,{
+    })
       // { headers: this.headers}
 
   }

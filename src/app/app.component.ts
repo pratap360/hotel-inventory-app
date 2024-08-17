@@ -14,6 +14,8 @@ import { CommonModule } from '@angular/common';
 import { ContainerComponent } from './container/container.component';
 import { EmployeeComponent } from './employee/employee.component';
 import { LoggerService } from './logger.service';
+import { localStorageToken } from './localstorage.token';
+// import { InitService } from './init.service';
 // import { localStorageToken } from './localstorage.token';
 
 @Component({
@@ -38,11 +40,17 @@ export class AppComponent implements OnInit {
   title = 'hotelinventoryapp';
 
   @ViewChild('name', { static: true }) name!: ElementRef;
-  constructor(
-    @Optional() private loggerService: LoggerService) {}
-    // @Inject(localStorageToken) private localStorage: any) {}
+  // constructor(@Optional() private loggerService: LoggerService,
+  // @Inject(localStorageToken) private localStorage: any,
+  // ){}
+  
+  // @Inject(localStorageToken) private localStorage: any,
+  // private initService: InitService){
+  // console.log(initService.config);
+  // }
+    
   ngOnInit() {
-    this.loggerService?.log('AppComponent.ngOnInit()');
+    // this.loggerService?.log('AppComponent.ngOnInit()');
     this.name.nativeElement.innerText = 'Hiltion Hotel';
     // this.localStorage.setItem('name', 'Hiltion Hotel');
   }
