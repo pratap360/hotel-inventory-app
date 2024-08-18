@@ -15,6 +15,7 @@ import { ContainerComponent } from './container/container.component';
 import { EmployeeComponent } from './employee/employee.component';
 import { LoggerService } from './logger.service';
 import { localStorageToken } from './localstorage.token';
+// import { AppRoutingModule } from './app-routing.module';
 // import { InitService } from './init.service';
 // import { localStorageToken } from './localstorage.token';
 
@@ -34,6 +35,7 @@ import { localStorageToken } from './localstorage.token';
     CommonModule,
     ContainerComponent,
     EmployeeComponent,
+
   ],
 })
 export class AppComponent implements OnInit {
@@ -43,12 +45,12 @@ export class AppComponent implements OnInit {
   // constructor(@Optional() private loggerService: LoggerService,
   // @Inject(localStorageToken) private localStorage: any,
   // ){}
-  
+
   // @Inject(localStorageToken) private localStorage: any,
   // private initService: InitService){
   // console.log(initService.config);
   // }
-    
+
   ngOnInit() {
     // this.loggerService?.log('AppComponent.ngOnInit()');
     this.name.nativeElement.innerText = 'Hiltion Hotel';
@@ -64,5 +66,4 @@ export class AppComponent implements OnInit {
   //   const componentRef = this.vcr.createComponent(RoomsComponent);
   //   componentRef.instance.numberOfRooms = 40;
   // }
-
 }

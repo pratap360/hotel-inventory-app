@@ -1,17 +1,17 @@
-<h1>Hello Angular</h1>
+<!-- <h1>Hello Angular</h1> -->
 <!-- * 1st way to load the data using 👇🏼 -->
-<hoin-rooms></hoin-rooms>
+<!-- <hoin-rooms></hoin-rooms> -->
 <!-- <hoin-employee></hoin-employee> -->
 
-<hoin-container>
+<!-- <hoin-container>
     <hoin-rooms></hoin-rooms>
     <hoin-employee></hoin-employee>
     <h1>
         this is ng content 
     </h1>
-</hoin-container>
+</hoin-container> -->
 
-<div #name></div>
+<!-- <div #name></div> -->
 
 <!-- * 2nd way to load the component dynamically using 👇🏼 ng template-->
 <!-- <div>
@@ -26,3 +26,12 @@
     <div *ngSwitchDefault>your are not authorized to view this page!</div>
 </div> -->
 
+
+<!-- 
+<a [href]="'rooms'">Rooms</a>
+<a [href]="'employee'">Employee</a> -->
+<!-- <a [routerLink]="'rooms'">Rooms</a>
+<a [routerLink]="'employee'">Employee</a> -->
+<a routerLink="'rooms'">Rooms</a>
+<a routerLink="'employee'">Employee</a>
+<router-outlet></router-outlet>
