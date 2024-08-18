@@ -15,6 +15,7 @@ import { ContainerComponent } from './container/container.component';
 import { EmployeeComponent } from './employee/employee.component';
 import { LoggerService } from './logger.service';
 import { localStorageToken } from './localstorage.token';
+import { AppNavComponent } from "./app-nav/app-nav.component";
 // import { AppRoutingModule } from './app-routing.module';
 // import { InitService } from './init.service';
 // import { localStorageToken } from './localstorage.token';
@@ -35,8 +36,8 @@ import { localStorageToken } from './localstorage.token';
     CommonModule,
     ContainerComponent,
     EmployeeComponent,
-
-  ],
+    AppNavComponent
+],
 })
 export class AppComponent implements OnInit {
   title = 'hotelinventoryapp';

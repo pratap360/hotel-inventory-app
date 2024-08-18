@@ -9,6 +9,7 @@ import { routes } from "./app.routes";
 import { RequestInterceptor } from "./request.interceptor";
 import { APP_CONFIG, APP_SERVICE_CONFIG } from "./AppConfig/appconfig.service";
 import { InitService } from "./init.service";
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 // Factory function to initialize the service
 function initFactory(initService: InitService) {
@@ -37,6 +38,6 @@ export const appConfig: ApplicationConfig = {
       useFactory: initFactory,
       deps: [InitService],
       multi: true
-    }
+    }, provideAnimationsAsync()
   ],
 };
