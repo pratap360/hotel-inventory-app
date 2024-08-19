@@ -2,7 +2,7 @@
 <hoin-header></hoin-header>
 <!-- <hoin-header></hoin-header>
 <hoin-header></hoin-header> -->
-{{rooms$ | async | json}}
+<!-- {{rooms$ | async | json}} -->
 
 <div [hidden]="hideRooms">
   Number of hotels :
@@ -15,9 +15,9 @@
 <!-- {{rooms?.availableRooms ?? 'no rooms'}} -->
 <!-- {{roomList | json}} -->
 
-<div *ngIf="selectedRooms">
+<!-- <div *ngIf="selectedRooms">
   {{ selectedRooms | json }}
-</div>
+</div> -->
 
 <div>
   <button (click)="addRoom()">Add Room</button>

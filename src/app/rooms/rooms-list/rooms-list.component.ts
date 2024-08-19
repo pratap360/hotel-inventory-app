@@ -1,10 +1,11 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges } from '@angular/core';
 import { RoomList } from '../room';
 import { CommonModule } from '@angular/common';
+import { RouterLink } from '@angular/router';
 @Component({
   selector: 'hoin-rooms-list',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule,RouterLink,],
   templateUrl: './rooms-list.component.html',
   styleUrls: ['./rooms-list.component.scss'],
   changeDetection:ChangeDetectionStrategy.OnPush

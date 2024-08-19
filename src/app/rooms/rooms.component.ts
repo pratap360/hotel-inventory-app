@@ -52,7 +52,7 @@ export class RoomsComponent
     // observer.error('error from observable');
   });
 
-  @ViewChild(HeaderComponent) headerComponent!: HeaderComponent;
+  // @ViewChild(HeaderComponent) headerComponent!: HeaderComponent;
 
   @ViewChildren(HeaderComponent)
   headerChildrenComponent!: QueryList<HeaderComponent>;
@@ -132,7 +132,7 @@ export class RoomsComponent
   ngAfterViewInit(): void {
     // console.log(this.headerComponent);
     // * if getting any error in dev mode then it fine but in prod it's not fine must look into the code for more info
-    this.headerComponent.title = 'Rooms View';
+    // this.headerComponent.title = 'Rooms View';
 
     this.headerChildrenComponent.last.title = 'Last title';
   }

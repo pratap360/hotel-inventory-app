@@ -1,4 +1,4 @@
-
+// ! don't use angular app.module.ts and app-routering.module.ts as it is not used in this project also it is not supported in angular 18 version 
 // import { APP_INITIALIZER, NgModule, provideZoneChangeDetection } from "@angular/core";
 // import { AppComponent } from "./app.component";
 // import { RoomsComponent } from "./rooms/rooms.component";
