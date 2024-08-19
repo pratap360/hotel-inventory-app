@@ -8,7 +8,7 @@ import {
   ViewChild,
   ViewContainerRef,
 } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { RouterLink, RouterOutlet } from '@angular/router';
 import { RoomsComponent } from './rooms/rooms.component';
 import { CommonModule } from '@angular/common';
 import { ContainerComponent } from './container/container.component';
@@ -32,6 +32,7 @@ import { AppNavComponent } from "./app-nav/app-nav.component";
   // styles: [`h1{color:red;}`]
   imports: [
     RouterOutlet,
+    RouterLink,
     RoomsComponent,
     CommonModule,
     ContainerComponent,
@@ -54,7 +55,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     // this.loggerService?.log('AppComponent.ngOnInit()');
-    this.name.nativeElement.innerText = 'Hiltion Hotel';
+    // this.name.nativeElement.innerText = 'Hiltion Hotel';
     // this.localStorage.setItem('name', 'Hiltion Hotel');
   }
 
