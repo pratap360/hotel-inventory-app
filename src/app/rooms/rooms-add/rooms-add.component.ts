@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, NgForm } from '@angular/forms';
 import { RoomList } from '../room';
 import { CommonModule } from '@angular/common';
 import { RoomsService } from '../services/rooms.service';
@@ -29,9 +29,27 @@ export class RoomsAddComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  AddRoom() {
+  AddRoom(roomsForm:NgForm) {
     this.roomService
       .addRoom(this.room)
-      .subscribe((data) => (this.successMsg = 'Room added successfully'));
+      .subscribe((data) => {
+        this.successMsg = 'Room added successfully';
+
+        // reset the form 1 way
+        roomsForm.reset();
+
+        // reset the form 2 way
+        roomsForm.resetForm({
+          roomType: '',
+          roomNumber: '',
+          amenities: '',
+          price: 0,
+          photos: '',
+          checkinTime: new Date(),
+          checkoutTime: new Date(),
+          rating: 0,
+        });
+      
+      });
   }
 }
