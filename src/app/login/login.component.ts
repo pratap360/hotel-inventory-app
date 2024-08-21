@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HoverDirective } from '../hover.directive';
+import { EmailvailidatorDirective } from '../emailvalidator/emailvailidator.directive';
+import { CommonModule } from '@angular/common';
 @Component({
   selector: 'hoin-login',
   standalone: true,
-  imports: [FormsModule,HoverDirective],
+  imports: [CommonModule,FormsModule,HoverDirective,EmailvailidatorDirective],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })
