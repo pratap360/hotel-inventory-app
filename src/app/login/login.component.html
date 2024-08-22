@@ -2,6 +2,7 @@
 <form>
 
     <div class="form-group">
+        <!-- <input #emailControl="ngModel" hoinHover="blue" type="email" class="form-control" name="email" placeholder="Email" [(ngModel)]="email" required/> -->
         <input #emailControl="ngModel" hoinEmailvailidator hoinHover="blue" type="email" class="form-control" name="email" placeholder="Email" [(ngModel)]="email" required/>
         <div>
             {{emailControl.errors | json}}
