@@ -11,6 +11,7 @@ export const routes: Routes = [
     {path: '', redirectTo: '/login', pathMatch: 'full'},
     {path: 'login', component: LoginComponent},
     // {path: 'rooms', loadChildren: () => import('./rooms/rooms.module').then(m => m.RoomsModule) },
+    // the above loadchildren is a lazy loading 👆
     {path: 'rooms', component: RoomsComponent, children : [
         {path: 'add', component: RoomsAddComponent},
         {path: ':roomid', component: RoomsBookingComponent},
