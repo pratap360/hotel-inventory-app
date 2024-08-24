@@ -10,6 +10,7 @@ export const routes: Routes = [
     // {path: '', redirectTo: '/rooms', pathMatch: 'full'},
     {path: '', redirectTo: '/login', pathMatch: 'full'},
     {path: 'login', component: LoginComponent},
+    // {path: 'rooms', loadChildren: () => import('./rooms/rooms.module').then(m => m.RoomsModule) },
     {path: 'rooms', component: RoomsComponent},
     {path: 'rooms/add', component: RoomsAddComponent},
     {path: 'rooms/:roomid', component: RoomsBookingComponent},
