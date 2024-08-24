@@ -16,11 +16,11 @@ import { HeaderComponent } from '../header/header.component';
 import { RoomsService } from './services/rooms.service';
 import { catchError, map, Observable, of, Subject, Subscription } from 'rxjs';
 import { HttpEventType } from '@angular/common/http';
-
+import { RouterOutlet } from '@angular/router';
 @Component({
   selector: 'hoin-rooms',
   standalone: true,
-  imports: [CommonModule, RoomsListComponent, HeaderComponent], // Include CommonModule here
+  imports: [CommonModule, RoomsListComponent, HeaderComponent,RouterOutlet], // Include CommonModule here
   templateUrl: './rooms.component.html',
   styleUrls: ['./rooms.component.scss'],
 })
