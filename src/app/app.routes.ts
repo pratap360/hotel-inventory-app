@@ -5,6 +5,7 @@ import { NotfoundComponent } from './notfound/notfound.component';
 import { RoomsBookingComponent } from './rooms/rooms-booking/rooms-booking.component';
 import { RoomsAddComponent } from './rooms/rooms-add/rooms-add.component';
 import { LoginComponent } from './login/login.component';
+// import { BookingComponent } from './booking/booking.component';
 
 export const routes: Routes = [
     // {path: '', redirectTo: '/rooms', pathMatch: 'full'},
@@ -18,6 +19,8 @@ export const routes: Routes = [
     ]},
     // {path: 'rooms/:roomid', component: RoomsBookingComponent},
     // {path: 'rooms/add', component: RoomsAddComponent},
+    // lazy loading the component 👇🏼 
+    {path: 'booking',loadComponent: () => import('./booking/booking.component').then(m => m.BookingComponent)},
     {path: 'employee',component: EmployeeComponent},
     {path: '**', component: NotfoundComponent},
 
