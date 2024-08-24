@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ConfigsService } from '../services/configs.service';
 
 @Component({
   selector: 'hoin-header',
@@ -10,7 +11,7 @@ import { Component, OnInit } from '@angular/core';
 export class HeaderComponent implements OnInit {
 
   title : string = ''
-  constructor() { }
+  constructor(private configsService: ConfigsService) { }
   ngOnInit(): void {
     
   }

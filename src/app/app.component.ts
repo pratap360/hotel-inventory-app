@@ -16,6 +16,7 @@ import { EmployeeComponent } from './employee/employee.component';
 import { LoggerService } from './logger.service';
 import { localStorageToken } from './localstorage.token';
 import { AppNavComponent } from "./app-nav/app-nav.component";
+import { ConfigsService } from './services/configs.service';
 // import { AppRoutingModule } from './app-routing.module';
 // import { InitService } from './init.service';
 // import { localStorageToken } from './localstorage.token';
@@ -44,6 +45,9 @@ export class AppComponent implements OnInit {
   title = 'hotelinventoryapp';
 
   @ViewChild('name', { static: true }) name!: ElementRef;
+
+  constructor(private configsService: ConfigsService ){}
+
   // constructor(@Optional() private loggerService: LoggerService,
   // @Inject(localStorageToken) private localStorage: any,
   // ){}

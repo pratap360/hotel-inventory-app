@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ConfigsService } from '../services/configs.service';
 
 @Component({
   selector: 'hoin-booking',
@@ -7,6 +8,10 @@ import { Component } from '@angular/core';
   templateUrl: './booking.component.html',
   styleUrl: './booking.component.scss'
 })
-export class BookingComponent {
+export class BookingComponent implements OnInit {
+  constructor(private configsService: ConfigsService) { }
+
+  ngOnInit(): void {
+  }
 
 }

@@ -17,6 +17,7 @@ import { RoomsService } from './services/rooms.service';
 import { catchError, map, Observable, of, Subject, Subscription } from 'rxjs';
 import { HttpEventType } from '@angular/common/http';
 import { RouterOutlet } from '@angular/router';
+import { ConfigsService } from '../services/configs.service';
 @Component({
   selector: 'hoin-rooms',
   standalone: true,
@@ -80,7 +81,8 @@ export class RoomsComponent
     map((rooms)=> rooms.length)
   )
   
-  constructor(@SkipSelf() private roomService: RoomsService) {}
+  constructor(@SkipSelf() private roomService: RoomsService,
+    private configsService: ConfigsService ) {}
 
   ngOnInit(): void {
     // this.roomList = this.roomService.getRooms();

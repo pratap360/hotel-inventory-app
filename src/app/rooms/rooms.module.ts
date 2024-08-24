@@ -8,6 +8,7 @@
 // import { RoomsAddComponent } from './rooms-add/rooms-add.component';
 // import { FormsModule } from '@angular/forms';
 // import { HeaderModule } from '../header/header.module';
+// import { RouteConfigsToken } from '../services/routeConfigs.service';
 
 
 // @NgModule({
@@ -21,6 +22,12 @@
 //     RoomsAddComponent,
 //     FormsModule,
 //     HeaderModule
-//   ]
+//   ],
+//   providers: [
+//     {
+//         provide: RouteConfigsToken,
+//         useValue: {title: 'Rooms'}
+//       }
+//   ],
 // })
 // export class RoomsModule { }

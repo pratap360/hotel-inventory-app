@@ -10,6 +10,7 @@ import { RequestInterceptor } from "./request.interceptor";
 import { APP_CONFIG, APP_SERVICE_CONFIG } from "./AppConfig/appconfig.service";
 import { InitService } from "./init.service";
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { RouteConfigsToken } from "./services/routeConfigs.service";
 
 // Factory function to initialize the service
 function initFactory(initService: InitService) {
@@ -27,6 +28,10 @@ export const appConfig: ApplicationConfig = {
     {
       provide: APP_SERVICE_CONFIG,
       useValue: APP_CONFIG
+    },
+    {
+      provide: RouteConfigsToken,
+      useValue: {title: 'Home'}
     },
     {
       provide: HTTP_INTERCEPTORS,
