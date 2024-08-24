@@ -8,7 +8,7 @@ import {
   ViewChild,
   ViewContainerRef,
 } from '@angular/core';
-import { RouterLink, RouterOutlet } from '@angular/router';
+import { NavigationEnd, NavigationStart, Router, RouterLink, RouterOutlet } from '@angular/router';
 import { RoomsComponent } from './rooms/rooms.component';
 import { CommonModule } from '@angular/common';
 import { ContainerComponent } from './container/container.component';
@@ -17,6 +17,7 @@ import { LoggerService } from './logger.service';
 import { localStorageToken } from './localstorage.token';
 import { AppNavComponent } from "./app-nav/app-nav.component";
 import { ConfigsService } from './services/configs.service';
+import { filter } from 'rxjs';
 // import { AppRoutingModule } from './app-routing.module';
 // import { InitService } from './init.service';
 // import { localStorageToken } from './localstorage.token';
@@ -46,7 +47,9 @@ export class AppComponent implements OnInit {
 
   @ViewChild('name', { static: true }) name!: ElementRef;
 
-  constructor(private configsService: ConfigsService ){}
+  constructor(private configsService: ConfigsService,
+    private router: Router
+   ){}
 
   // constructor(@Optional() private loggerService: LoggerService,
   // @Inject(localStorageToken) private localStorage: any,
@@ -58,6 +61,21 @@ export class AppComponent implements OnInit {
   // }
 
   ngOnInit() {
+    // this.router.events.subscribe((event) => {
+    //   console.log(event);
+    // })
+
+    this.router.events.pipe(
+      filter((event) => event instanceof NavigationStart)
+    ).subscribe((event) => {
+      console.log("navigation start");
+    });
+
+    this.router.events.pipe(
+      filter((event) => event instanceof NavigationEnd)
+    ).subscribe((event) =>{
+      console.log("navigation end");
+    } )
     // this.loggerService?.log('AppComponent.ngOnInit()');
     // this.name.nativeElement.innerText = 'Hiltion Hotel';
     // this.localStorage.setItem('name', 'Hiltion Hotel');
