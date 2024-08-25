@@ -13,9 +13,6 @@ import { LoginService } from './login.service';
   styleUrl: './login.component.scss'
 })
 export class LoginComponent implements OnInit{
-  static login() {
-    throw new Error('Method not implemented.');
-  }
 
   email: string = '';
   password: string = '';
@@ -38,5 +35,16 @@ export class LoginComponent implements OnInit{
       // this.route.navigateByUrl('/rooms/add');
     }
   }
+
+
+  // login() {
+  //   if (this.loginservice.login(this.email, this.password)) {
+  //     console.log("Routing to /employee");
+  //     this.route.navigate(['/employee']);
+  //   } else {
+  //     console.log("Routing to /login");
+  //     this.route.navigate(['/login']);
+  //   }
+  // }
 
 }
