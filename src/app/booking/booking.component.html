@@ -12,7 +12,7 @@
         <mat-error>Email is <strong>required</strong></mat-error>
         } -->
 
-<form [formGroup]="bookingForm">
+<form [formGroup]="bookingForm" (ngSubmit)="addBooking()">
   <mat-form-field class="example-full-width">
     <mat-label>Room Id</mat-label>
     <input
@@ -64,12 +64,50 @@
   </mat-form-field>
 
   <mat-form-field>
-    <mat-label>Checing date</mat-label>
-    <input matInput [matDatepicker]="picker" formControlName = "checkinDate">
+    <mat-label>Booking Date</mat-label>
+    <input matInput [matDatepicker]="bookingDate" formControlName = "bookingDate">
     <mat-hint>MM/DD/YYYY</mat-hint>
-    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-    <mat-datepicker #picker></mat-datepicker>
+    <mat-datepicker-toggle matIconSuffix [for]="bookingDate"></mat-datepicker-toggle>
+    <mat-datepicker #bookingDate></mat-datepicker>
   </mat-form-field>
   
+  <mat-form-field>
+    <mat-label>Check in date</mat-label>
+    <input matInput [matDatepicker]="checkinDate" formControlName = "checkinDate">
+    <mat-hint>MM/DD/YYYY</mat-hint>
+    <mat-datepicker-toggle matIconSuffix [for]="checkinDate"></mat-datepicker-toggle>
+    <mat-datepicker #checkinDate></mat-datepicker>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Check out date</mat-label>
+    <input matInput [matDatepicker]="checkoutDate" formControlName ="checkoutDate">
+    <mat-hint>MM/DD/YYYY</mat-hint>
+    <mat-datepicker-toggle matIconSuffix [for]="checkoutDate"></mat-datepicker-toggle>
+    <mat-datepicker #checkoutDate></mat-datepicker>
+  </mat-form-field>
+
+  <div formGroupName="address">
+  <mat-accordion class="example-headers-align" multi>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title> Address </mat-panel-title>
+      </mat-expansion-panel-header>
+  
+      <mat-form-field>
+        <mat-label>Address Line 1</mat-label>
+        <input type="text" formControlName="addressLine1" placeholder="Address Line 1" matInput/>
+      </mat-form-field>
+  
+
+    </mat-expansion-panel>
+  </mat-accordion>
+</div>
+
+  
+  <div>
+    <!-- <button type="submit" mat-raised-button color="primary">Book Room</button> -->
+    <button type="submit" mat-flat-button color="primary">Book Room</button>
+  </div>
 
 </form>
