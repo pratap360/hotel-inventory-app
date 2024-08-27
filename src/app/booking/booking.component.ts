@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ConfigsService } from '../services/configs.service';
-import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
@@ -20,6 +20,10 @@ import {MatIconModule} from '@angular/material/icon';
 })
 export class BookingComponent implements OnInit {
   bookingForm!: FormGroup;
+
+  get guests() {
+    return this.bookingForm.get('guests') as FormArray;
+  } 
 
   constructor(
     private configsService: ConfigsService,
@@ -50,7 +54,9 @@ export class BookingComponent implements OnInit {
       guestName: [''],
      
 
-      guestCount: [''],
+      guests: this.fb.array ([this.fb.group({
+        guestName: [''], age: new FormControl ('')
+      })]),
       guestList: [''],
     });
   }
@@ -59,4 +65,11 @@ export class BookingComponent implements OnInit {
     // console.log(this.bookingForm.value);
     console.log(this.bookingForm.getRawValue());
   }
+
+  addGuest() {
+    this.guests.push(
+      this.fb.group({guestName: [''], age: new FormControl ('')
+    }));
+  }
+
 }

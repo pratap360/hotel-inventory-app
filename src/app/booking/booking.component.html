@@ -124,6 +124,23 @@
   </mat-accordion>
 </div>
 
+  <div>
+    <button type="submit" mat-flat-button color="primary" type="button" (click)="addGuest()">add guest</button>
+  </div>
+
+  <div formArrayName="guests">
+    <div *ngFor="let guest of guests.controls; let i = index" [formGroupName]="i">
+      <mat-form-field>
+        <input type="text" matInput formControlName="guestName" placeholder="Guest Name" />
+      </mat-form-field>
+
+      <mat-form-field>
+        <input type="number" matInput formControlName="age" placeholder="Age" />
+      </mat-form-field>
+      
+    </div>
+  </div>
+
   
   <div>
     <!-- <button type="submit" mat-raised-button color="primary">Book Room</button> -->
