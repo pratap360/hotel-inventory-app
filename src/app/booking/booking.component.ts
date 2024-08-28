@@ -16,7 +16,9 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatAccordion, MatExpansionModule } from '@angular/material/expansion';
 import { MatIconModule } from '@angular/material/icon';
-import {MatCheckboxModule} from '@angular/material/checkbox';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { BookingService } from './booking.service';
+import { exhaustMap, mergeMap, switchMap } from 'rxjs';
 
 @Component({
   selector: 'hoin-booking',
@@ -47,44 +49,61 @@ export class BookingComponent implements OnInit {
 
   constructor(
     private configsService: ConfigsService,
-    private fb: FormBuilder
-  ) {}
+    private fb: FormBuilder,
+    private bookingService: BookingService
+  ) { }
 
   ngOnInit(): void {
-    this.bookingForm = this.fb.group({
-      roomId: new FormControl({ value: '12', disabled: true }),
-      bookingId: [''],
-      // guestEmail: ['',[Validators.required, Validators.email]],
-      guestEmail: ['',{updateOn:'blur', validators:[Validators.required, Validators.email]}],
-      checkinDate: [''],
-      checkoutDate: [''],
+    this.bookingForm = this.fb.group(
+      {
+        roomId: new FormControl({ value: '12', disabled: true }),
+        bookingId: [''],
+        // guestEmail: ['',[Validators.required, Validators.email]],
+        guestEmail: [
+          '',
+          {
+            updateOn: 'blur',
+            validators: [Validators.required, Validators.email],
+          },
+        ],
+        checkinDate: [''],
+        checkoutDate: [''],
 
-      address: this.fb.group({
-        addressLine1: ['',{validators:[Validators.required]}],
-        addressLine2: [''],
-        city: ['',{validators:[Validators.required]}],
-        state: ['',{validators:[Validators.required]}],
-        country: [''],
-        zipCode: [''],
-      }),
+        address: this.fb.group({
+          addressLine1: ['', { validators: [Validators.required] }],
+          addressLine2: [''],
+          city: ['', { validators: [Validators.required] }],
+          state: ['', { validators: [Validators.required] }],
+          country: [''],
+          zipCode: [''],
+        }),
 
-      bookingStatus: [''],
-      bookingAmount: [''],
-      bookingDate: [''],
-      mobileNumber: ['',{updateOn:'blur'}],
-      guestName: ['', [Validators.required, Validators.minLength(5)]],
+        bookingStatus: [''],
+        bookingAmount: [''],
+        bookingDate: [''],
+        mobileNumber: ['', { updateOn: 'blur' }],
+        guestName: ['', [Validators.required, Validators.minLength(5)]],
 
-      guests: this.fb.array([
-        this.addGuestControl(),
-      ]),
-      guestList: [''],
-      tnc : new FormControl(false,{validators:[Validators.requiredTrue]}),
-    },{updateOn:'blur'});
+        guests: this.fb.array([this.addGuestControl()]),
+        guestList: [''],
+        tnc: new FormControl(false, { validators: [Validators.requiredTrue] }),
+      },
+      // { updateOn: 'blur' }
+    );
     this.getBookingData();
-    this.bookingForm.valueChanges.subscribe((data) => {
-      console.log(data);
-      
-    })
+    // this.bookingForm.valueChanges.subscribe((data) => {
+    //   console.log(data);
+    //   this.bookingService.bookRooms(data).subscribe((data) => {
+    //     console.log(data);
+    //   })
+    // });
+
+    this.bookingForm.valueChanges.pipe(
+      // mergeMap((data) => this.bookingService.bookRooms(data))
+      // switchMap((data) => this.bookingService.bookRooms(data))
+      exhaustMap((data) => this.bookingService.bookRooms(data))
+    ).subscribe((data) => console.log(data));
+
     // this.bookingForm = this.fb.group({
     //   roomId: '2',
     //   bookingId: '',
@@ -116,18 +135,18 @@ export class BookingComponent implements OnInit {
   addBooking() {
     // console.log(this.bookingForm.value);
     console.log(this.bookingForm.getRawValue());
-
-    this.bookingForm.reset();
+    // this.bookingService.bookRooms(this.bookingForm.getRawValue())
+    //   .subscribe((data) => console.log(data));
+    // this.bookingForm.reset();
   }
 
-  getBookingData(){
+  getBookingData() {
     //  this.bookingForm.setValue({
     //   roomId: '32',
     //   bookingId: '',
     //   guestEmail: 'test@test.com',
     //   checkinDate: new Date ('2022-01-01'),
     //   checkoutDate: '',
-
     //   address: {
     //     addressLine1: '',
     //     addressLine2: '',
@@ -136,29 +155,26 @@ export class BookingComponent implements OnInit {
     //     country: '',
     //     zipCode: '',
     //   },
-
     //   bookingStatus: '',
     //   bookingAmount: '',
     //   bookingDate: '',
     //   mobileNumber: '',
     //   guestName: '',
-
     //   guests:[],
     //   guestList: '',
     //   tnc : false,
     //  })
-
-
   }
 
   addGuest() {
-    this.guests.push(
-      this.addGuestControl()
-    );
+    this.guests.push(this.addGuestControl());
   }
 
   addGuestControl() {
-    return this.fb.group({ guestName: ['',{validators:[Validators.required]}], age: new FormControl('') })
+    return this.fb.group({
+      guestName: ['', { validators: [Validators.required] }],
+      age: new FormControl(''),
+    });
   }
 
   addPassport() {
