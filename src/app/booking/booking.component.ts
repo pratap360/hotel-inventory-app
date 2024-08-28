@@ -54,7 +54,8 @@ export class BookingComponent implements OnInit {
     this.bookingForm = this.fb.group({
       roomId: new FormControl({ value: '12', disabled: true }),
       bookingId: [''],
-      guestEmail: ['',[Validators.required, Validators.email]],
+      // guestEmail: ['',[Validators.required, Validators.email]],
+      guestEmail: ['',{updateOn:'blur', validators:[Validators.required, Validators.email]}],
       checkinDate: [''],
       checkoutDate: [''],
 
@@ -70,7 +71,7 @@ export class BookingComponent implements OnInit {
       bookingStatus: [''],
       bookingAmount: [''],
       bookingDate: [''],
-      mobileNumber: [''],
+      mobileNumber: ['',{updateOn:'blur'}],
       guestName: ['', [Validators.required, Validators.minLength(5)]],
 
       guests: this.fb.array([
@@ -78,7 +79,12 @@ export class BookingComponent implements OnInit {
       ]),
       guestList: [''],
       tnc : new FormControl(false,{validators:[Validators.requiredTrue]}),
-    });
+    },{updateOn:'blur'});
+    this.getBookingData();
+    this.bookingForm.valueChanges.subscribe((data) => {
+      console.log(data);
+      
+    })
     // this.bookingForm = this.fb.group({
     //   roomId: '2',
     //   bookingId: '',
@@ -112,6 +118,37 @@ export class BookingComponent implements OnInit {
     console.log(this.bookingForm.getRawValue());
 
     this.bookingForm.reset();
+  }
+
+  getBookingData(){
+    //  this.bookingForm.setValue({
+    //   roomId: '32',
+    //   bookingId: '',
+    //   guestEmail: 'test@test.com',
+    //   checkinDate: new Date ('2022-01-01'),
+    //   checkoutDate: '',
+
+    //   address: {
+    //     addressLine1: '',
+    //     addressLine2: '',
+    //     city: '',
+    //     state: '',
+    //     country: '',
+    //     zipCode: '',
+    //   },
+
+    //   bookingStatus: '',
+    //   bookingAmount: '',
+    //   bookingDate: '',
+    //   mobileNumber: '',
+    //   guestName: '',
+
+    //   guests:[],
+    //   guestList: '',
+    //   tnc : false,
+    //  })
+
+
   }
 
   addGuest() {
