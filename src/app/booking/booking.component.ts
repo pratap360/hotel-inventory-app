@@ -19,6 +19,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { BookingService } from './booking.service';
 import { exhaustMap, mergeMap, switchMap } from 'rxjs';
+import { Custom } from './validators/custom.validator';
 
 @Component({
   selector: 'hoin-booking',
@@ -82,12 +83,12 @@ export class BookingComponent implements OnInit {
         bookingAmount: [''],
         bookingDate: [''],
         mobileNumber: ['', { updateOn: 'blur' }],
-        guestName: ['', [Validators.required, Validators.minLength(5)]],
+        guestName: ['', [Validators.required, Validators.minLength(5), Custom.ValidateName, Custom.ValidateSpecialChar('*')]],
 
         guests: this.fb.array([this.addGuestControl()]),
         guestList: [''],
         tnc: new FormControl(false, { validators: [Validators.requiredTrue] }),
-      },
+      },{ updateOn: 'blur', validators: [Custom.validateDate] }
       // { updateOn: 'blur' }
     );
     this.getBookingData();

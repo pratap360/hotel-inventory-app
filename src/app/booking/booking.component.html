@@ -1,8 +1,8 @@
-<p>booking works!</p>
+<!-- <p>booking works!</p>
 
 {{ bookingForm.value | json }}
 {{ bookingForm.pristine | json }}
-{{ bookingForm.dirty | json }}
+{{ bookingForm.dirty | json }} -->
 
 <!-- <mat-hint>Errors appear instantly!</mat-hint>
         @if (emailFormControl.hasError('email') && !emailFormControl.hasError('required')) {
@@ -11,7 +11,8 @@
         @if (emailFormControl.hasError('required')) {
         <mat-error>Email is <strong>required</strong></mat-error>
         } -->
-
+{{bookingForm.invalid | json}}
+{{bookingForm.valid | json}}
 <div>
   <button mat-raised-button color="primary" type="button" (click)="addPassport()">Add Passport</button>
 </div>
@@ -33,7 +34,7 @@
   <mat-form-field class="example-full-width">
     <mat-label>Guest Name</mat-label>
     <input type="text" matInput formControlName="guestName" placeholder="Guest Name" />
-    <!-- {{bookingForm.get('guestName')?.errors | json}} -->
+    {{bookingForm.get('guestName')?.errors | json}}
   <mat-error *ngIf="bookingForm.get('guestName')?.hasError('minlength')">Guest Name should be minimum 5 characters</mat-error>
   </mat-form-field>
 
@@ -74,6 +75,7 @@
     <mat-hint>MM/DD/YYYY</mat-hint>
     <mat-datepicker-toggle matIconSuffix [for]="checkoutDate"></mat-datepicker-toggle>
     <mat-datepicker #checkoutDate></mat-datepicker>
+    {{bookingForm.get('checkoutDate')?.errors | json}}
   </mat-form-field>
 
   <div formGroupName="address">

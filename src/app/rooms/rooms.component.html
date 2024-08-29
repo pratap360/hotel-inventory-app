@@ -17,9 +17,9 @@
 <!-- {{rooms?.availableRooms ?? 'no rooms'}} -->
 <!-- {{roomList | json}} -->
 
-<div *ngIf="selectedRooms">
+<!-- <div *ngIf="selectedRooms">
   {{ selectedRooms | json }}
-</div>
+</div> -->
 
 <div>
   <button routerLink="add">Add Room</button>
@@ -27,17 +27,17 @@
   <br>
 </div>
 
-<h2>Number of Rooms:{{roomsCount$ | async}} </h2>
-<h3>{{getError$| async}}</h3>
+<!-- <h2>Number of Rooms:{{roomsCount$ | async}} </h2>
+<h3>{{getError$| async}}</h3> -->
 
-<div *ngIf="rooms$ | async as rooms">
+<!-- <div *ngIf="rooms$ | async as rooms">
   <hoin-rooms-list
     [rooms]="rooms"
     [title]="title"
     (selectedRoom)="selectRoom($event)"
   >
   </hoin-rooms-list>
-</div>
+</div> -->
 <!-- <div *ngIf="rooms.availableRooms > 0">
   <hoin-rooms-list
     [rooms]="roomList"
@@ -46,7 +46,7 @@
   >
   </hoin-rooms-list>
 </div> -->
-
+<!-- 
 <button (click)="toggle()">Toggle</button>
 
 <button (click)="editRoom()">Edit Room</button>
@@ -55,6 +55,6 @@
 
 <h4>
   {{totalBytes}} loaded
-</h4>
+</h4> -->
 
 <!-- <router-outlet></router-outlet> -->
