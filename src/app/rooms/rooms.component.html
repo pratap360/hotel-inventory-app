@@ -30,14 +30,14 @@
 <!-- <h2>Number of Rooms:{{roomsCount$ | async}} </h2>
 <h3>{{getError$| async}}</h3> -->
 
-<!-- <div *ngIf="rooms$ | async as rooms">
+<div *ngIf="rooms$ | async as rooms">
   <hoin-rooms-list
     [rooms]="rooms"
     [title]="title"
     (selectedRoom)="selectRoom($event)"
   >
   </hoin-rooms-list>
-</div> -->
+</div>
 <!-- <div *ngIf="rooms.availableRooms > 0">
   <hoin-rooms-list
     [rooms]="roomList"

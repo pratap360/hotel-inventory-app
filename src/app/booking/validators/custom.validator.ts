@@ -36,7 +36,7 @@ export class Custom {
         // console.log(diffDays);
         // console.log(diffTime);
         
-        if(diffDays <= 0){
+        if(diffDays <= 0){ 
             control.get('checkoutDate')?.setErrors({
                 invalidDate: true
             })

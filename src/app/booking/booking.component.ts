@@ -20,6 +20,8 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { BookingService } from './booking.service';
 import { exhaustMap, mergeMap, switchMap } from 'rxjs';
 import { Custom } from './validators/custom.validator';
+import { ActivatedRoute } from '@angular/router';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'hoin-booking',
@@ -36,6 +38,7 @@ import { Custom } from './validators/custom.validator';
     MatExpansionModule,
     MatIconModule,
     MatCheckboxModule,
+    MatSnackBarModule
   ],
   templateUrl: './booking.component.html',
   styleUrl: './booking.component.scss',
@@ -51,13 +54,14 @@ export class BookingComponent implements OnInit {
   constructor(
     private configsService: ConfigsService,
     private fb: FormBuilder,
-    private bookingService: BookingService
+    private bookingService: BookingService,
+    private route:ActivatedRoute,
   ) { }
 
   ngOnInit(): void {
-    this.bookingForm = this.fb.group(
-      {
-        roomId: new FormControl({ value: '12', disabled: true }),
+    const roomId = this.route.snapshot.paramMap.get('roomid');
+    this.bookingForm = this.fb.group({
+        roomId: new FormControl({ value:roomId, disabled: true }),
         bookingId: [''],
         // guestEmail: ['',[Validators.required, Validators.email]],
         guestEmail: [

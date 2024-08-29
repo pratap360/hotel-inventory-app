@@ -7,7 +7,8 @@ import { RoomsAddComponent } from './rooms/rooms-add/rooms-add.component';
 import { LoginComponent } from './login/login.component';
 import { loginGuard } from './guards/login.guard';
 import { roomGuard } from './rooms/room.guard';
-// import { BookingComponent } from './booking/booking.component';
+import { BookingComponent } from './booking/booking.component';
+import { bookingGuard } from './booking/guards/booking.guard';
 
 export const routes: Routes = [
     // {path: '', redirectTo: '/rooms', pathMatch: 'full'},
@@ -19,10 +20,14 @@ export const routes: Routes = [
     {path: 'login', component: LoginComponent},
     {path: 'rooms', canActivateChild: [roomGuard], component: RoomsComponent, children : [
         {path: 'add', component: RoomsAddComponent},
-        {path: ':roomid', component: RoomsBookingComponent},
+        // {path: ':roomid', component: RoomsBookingComponent},
     ]},
     // lazy loading the component 👇🏼 
-    {path: 'booking',loadComponent: () => import('./booking/booking.component').then(m => m.BookingComponent),canActivate: [loginGuard]},
+    {path: 'booking',loadComponent: () => import('./booking/booking.component').then(m => m.BookingComponent),canActivate: [loginGuard],
+        children : [
+        {path: ':roomid', component: BookingComponent , canDeactivate:[bookingGuard]},
+        ]
+    },
     {path: 'employee',component: EmployeeComponent,canActivate: [loginGuard]},
     {path: '**', component: NotfoundComponent},
 
