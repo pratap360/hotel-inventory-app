@@ -18,10 +18,11 @@ import { catchError, map, Observable, of, Subject, Subscription } from 'rxjs';
 import { HttpEventType } from '@angular/common/http';
 import { RouterOutlet } from '@angular/router';
 import { ConfigsService } from '../services/configs.service';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
 @Component({
   selector: 'hoin-rooms',
   standalone: true,
-  imports: [CommonModule, RoomsListComponent, HeaderComponent,RouterOutlet], // Include CommonModule here
+  imports: [CommonModule, RoomsListComponent, HeaderComponent,RouterOutlet,ReactiveFormsModule], // Include CommonModule here
   templateUrl: './rooms.component.html',
   styleUrls: ['./rooms.component.scss'],
 })
@@ -76,6 +77,8 @@ export class RoomsComponent
       return of ([])
     })
   )
+
+  priceFilter = new FormControl(0);
 
   roomsCount$ = this.roomService.getRooms$.pipe(
     map((rooms)=> rooms.length)

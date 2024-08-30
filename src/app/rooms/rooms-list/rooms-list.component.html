@@ -19,7 +19,7 @@
   <tr
     [ngClass]="e ? 'even' : 'odd'"
     *ngFor="
-      let room of rooms;
+      let room of rooms | filter : price;
       let e = even;
       let o = odd;
       let i = index

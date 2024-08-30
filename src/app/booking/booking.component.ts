@@ -58,14 +58,15 @@ export class BookingComponent implements OnInit {
     private route:ActivatedRoute,
   ) { }
 
-  ngOnInit(): void {
+  ngOnInit(): void { 
     const roomId = this.route.snapshot.paramMap.get('roomid');
+
     this.bookingForm = this.fb.group({
-        roomId: new FormControl({ value:roomId, disabled: true }),
+        roomId: new FormControl({ value:roomId,disabled: true },
+          {validators:[Validators.required]}),
         bookingId: [''],
         // guestEmail: ['',[Validators.required, Validators.email]],
-        guestEmail: [
-          '',
+        guestEmail: ['',
           {
             updateOn: 'blur',
             validators: [Validators.required, Validators.email],
@@ -147,28 +148,30 @@ export class BookingComponent implements OnInit {
 
   getBookingData() {
     //  this.bookingForm.setValue({
-    //   roomId: '32',
-    //   bookingId: '',
-    //   guestEmail: 'test@test.com',
-    //   checkinDate: new Date ('2022-01-01'),
-    //   checkoutDate: '',
-    //   address: {
-    //     addressLine1: '',
-    //     addressLine2: '',
-    //     city: '',
-    //     state: '',
-    //     country: '',
-    //     zipCode: '',
-    //   },
-    //   bookingStatus: '',
-    //   bookingAmount: '',
-    //   bookingDate: '',
-    //   mobileNumber: '',
-    //   guestName: '',
-    //   guests:[],
-    //   guestList: '',
-    //   tnc : false,
-    //  })
+
+    this.bookingForm.patchValue({
+      // roomId: '',
+      bookingId: '',
+      guestEmail: 'test@test.com',
+      checkinDate: new Date ('2022-01-01'),
+      checkoutDate: '',
+      address: {
+        addressLine1: '',
+        addressLine2: '',
+        city: '',
+        state: '',
+        country: '',
+        zipCode: '',
+      },
+      bookingStatus: '',
+      bookingAmount: '',
+      bookingDate: '',
+      mobileNumber: '',
+      guestName: '',
+      guests:[],
+      guestList: '',
+      tnc : false,
+     })
   }
 
   addGuest() {
