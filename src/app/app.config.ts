@@ -1,4 +1,4 @@
-import { APP_INITIALIZER, ApplicationConfig } from "@angular/core";
+import { APP_INITIALIZER, ApplicationConfig, ErrorHandler } from "@angular/core";
 import { provideZoneChangeDetection } from "@angular/core";
 import { BrowserModule, bootstrapApplication } from "@angular/platform-browser";
 import { provideHttpClient, HTTP_INTERCEPTORS } from "@angular/common/http";
@@ -11,6 +11,7 @@ import { APP_CONFIG, APP_SERVICE_CONFIG } from "./AppConfig/appconfig.service";
 import { InitService } from "./init.service";
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { RouteConfigsToken } from "./services/routeConfigs.service";
+import { GlobalErrorHandler } from "./errorhandler.service";
 
 // Factory function to initialize the service
 function initFactory(initService: InitService) {
@@ -43,6 +44,11 @@ export const appConfig: ApplicationConfig = {
       useFactory: initFactory,
       deps: [InitService],
       multi: true
-    }, provideAnimationsAsync()
+    }, 
+    {
+      provide: ErrorHandler,
+      useClass: GlobalErrorHandler
+    },
+    provideAnimationsAsync()
   ],
 };
