@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { RoomsComponent } from './rooms.component';
+import { RoomsService } from './services/rooms.service';
+import { ConfigsService } from '../services/configs.service';
 
 describe('RoomsComponent', () => {
   let component: RoomsComponent;
@@ -8,9 +10,10 @@ describe('RoomsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [RoomsComponent]
-    })
-    .compileComponents();
+      imports: [RoomsComponent],
+      declarations: [RoomsComponent],
+      providers: [RoomsService,ConfigsService],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(RoomsComponent);
     component = fixture.componentInstance;
@@ -20,4 +23,5 @@ describe('RoomsComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
 });
