@@ -9,6 +9,8 @@ import { loginGuard } from './guards/login.guard';
 import { roomGuard } from './rooms/room.guard';
 import { BookingComponent } from './booking/booking.component';
 import { bookingGuard } from './booking/guards/booking.guard';
+import { CommentsComponent } from './comments/comments.component';
+import { commentsGuard } from './comments/guard/comments.guard';
 
 export const routes: Routes = [
     // {path: '', redirectTo: '/rooms', pathMatch: 'full'},
@@ -27,6 +29,9 @@ export const routes: Routes = [
         children : [
         {path: ':roomid', component: BookingComponent , canDeactivate:[bookingGuard]},
         ]
+    },
+    {path: 'comments', component: CommentsComponent, 
+        // resolve: {comments : commentsGuard}
     },
     {path: 'employee',component: EmployeeComponent,canActivate: [loginGuard]},
     {path: '**', component: NotfoundComponent},
